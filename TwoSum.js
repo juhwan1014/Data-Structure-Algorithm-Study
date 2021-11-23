@@ -38,3 +38,20 @@ var twoSum = function(nums, target){
 }
 
 
+
+//Second Solution
+
+
+const twoSum = (nums, target) => {
+    const map = {}
+    for(let i = 0; i < nums.length; i++){
+        let partner = target - nums[i]
+ 
+        if(partner in map){
+            return ([map[partner] , i])
+        }
+        else
+        map[nums[i]] = i 
+    }
+          
+ }
