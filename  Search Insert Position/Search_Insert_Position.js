@@ -12,8 +12,8 @@
 //     }
 //     return nums.length;
 // };
-
-
+  
+   
 var searchInsert = function(nums, target) {
     var right = nums.length - 1;
     var left = 0;
