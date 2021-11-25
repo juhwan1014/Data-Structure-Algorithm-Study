@@ -1,39 +1,32 @@
 /**
  * @param {number[]} nums
  * @param {number} target
- * @return {number[]}
+ * @return {number}
  */
 
-// nums = [2,7,11,15]
+// var searchInsert = function(nums, target) {
+//     for (let i = 0; i < nums.length; i++){
+//         if (nums[i] >= target){
+//             return i;
+//         }
+//     }
+//     return nums.length;
+// };
 
-const twoSum = (nums, target) => {
-    const map = {};
-    
-    for(let i = 0; i < nums.length; i++){
-       let partner = target - nums[i]
-       
-       if (partner in map){
-          return [map[partner], i]
-       }
-      
-        map[nums[i]] = i ;
-        
+
+var searchInsert = function(nums, target) {
+    var right = nums.length - 1;
+    var left = 0;
+    while (left < right) {
+        var mid = Math.floor((left + right) / 2);
+        if (target === nums[mid]) {
+            return mid;
+        } else if (target < nums[mid]) {
+            right = mid - 1;
+        } else {
+            left = mid + 1
+        }
     }
     
-    return null
-}
-
-
-
-
-
-// var twoSum = function(nums, target){
-// for(let i = 0; i < nums.length; i++){
-//  for(let j = i+1; j < nums.length; j++){
-//      if(nums[i] + nums[j] == target){
-//         return [i, j] 
-//      }
-//  }
-// }
-//     return null
-// }
+    return target > nums[left] ? left + 1 : left;
+};
