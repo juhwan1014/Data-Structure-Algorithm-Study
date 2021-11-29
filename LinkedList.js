@@ -11,4 +11,71 @@ class LinkedList {
         this.size = 0;
     }
 
+    insertFirst(val){
+    this.head = new Node(val, this.head);
+    this.size++;
+    }
+
+    insertLast(val){
+        let node = new Node(val);
+        let current;
+
+        if(!this.head){
+            this.head = node;
+        } else {
+            current = this.head;
+
+             while(current.next){
+                 current = current.next
+             }
+
+            current.next = node;
+        }
+
+        this.size++;
+    }
+
+    insertAt(val, index){
+      // If index is out of range
+      if(index > 0 && index > this.size){
+          return
+      }
+
+      //If first index
+      if(index === 0){
+          this.insertFirst(val);
+          return
+      } 
+
+      const node = new Node(val);
+      let current, previous;
+
+      //Set current to first
+      current = this.head;
+      let count = 0;
+
+      while (count < index){
+          previous = current; // Node before index
+          count++;
+          current = current.next
+      }
+      //ex>
+        // 0<3
+        // pre = 0
+        // cur = 1
+
+        // 1<3
+        // pre = 1
+        // cur = 2
+
+        // 2<3
+        // pre = 2
+        // cur = 3
+
+      node.next = current;
+      previous.next = node;
+
+    }
+
+
 }
