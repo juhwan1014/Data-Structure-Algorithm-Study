@@ -10,7 +10,7 @@ class LinkedList {
         this.head = null;
         this.size = 0;
     }
-
+    
     insertFirst(val){
     this.head = new Node(val, this.head);
     this.size++;
@@ -40,13 +40,14 @@ class LinkedList {
       if(index > 0 && index > this.size){
           return
       }
+     
 
       //If first index
       if(index === 0){
           this.insertFirst(val);
           return
       } 
-
+      
       const node = new Node(val);
       let current, previous;
 
@@ -54,28 +55,35 @@ class LinkedList {
       current = this.head;
       let count = 0;
 
+
+
       while (count < index){
           previous = current; // Node before index
           count++;
           current = current.next
       }
-      //ex>
-        // 0<3
-        // pre = 0
-        // cur = 1
-
-        // 1<3
-        // pre = 1
-        // cur = 2
-
-        // 2<3
-        // pre = 2
-        // cur = 3
 
       node.next = current;
       previous.next = node;
+      
 
     }
 
 
+    
+
 }
+
+const list = new LinkedList();
+
+list.insertFirst(1);
+list.insertAt(2, 1);
+list.insertLast(4);
+
+
+
+console.log("list")
+let temp = list.head
+list.head = list.head.next
+console.log(temp)
+console.log(list.head)
