@@ -5,7 +5,7 @@
 var majorityElement = function(nums) {
     var map = {}
     let max = 0
-    let res = 0
+   
     
     for(let i = 0; i < nums.length; i++){
        if(map[nums[i]]){
