@@ -5,24 +5,27 @@
 var findDisappearedNumbers = function(nums) {
     
   let map = {}
-  let res = []
-  
+
     for(let i = 0; i < nums.length; i++){
       if(!map[nums[i]]) {
           map[nums[i]] = true
-      }
+      } 
   }
     
+    // map ={1: true, 2:true , 3:true, 4:true, 7:true ,8:true}
+    
     for(let i = 1; i <= nums.length; i++){
-       if(i in map){
-           continue
-       } else{
-           res.push(i)
-       }
-       
+       if(i in map) 
+          delete map[i]
+       else      
+           map[i] = false
     }
-    return res
+    
+return Object.keys(map)
+  
     
 };
+
+
 
 
