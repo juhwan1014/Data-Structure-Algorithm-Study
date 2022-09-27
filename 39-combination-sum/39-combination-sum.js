@@ -86,28 +86,54 @@
 //     return result;
 // };
 
-var combinationSum = function(candidates, target){
-    let result = [];
+// var combinationSum = function(candidates, target){
+//     let result = [];
     
-    function dfs(index, currentVal,arr){
+//     function dfs(index, currentVal,arr){
     
-    if(currentVal < 0) return;
-    if(currentVal === 0){
-        result.push([...arr]);
-    } 
+//     if(currentVal < 0) return;
+//     if(currentVal === 0){
+//         result.push([...arr]);
+//     } 
     
-    for(let i = index; i<candidates.length; i++){
-        arr.push(candidates[i]);
-        dfs(i,currentVal-candidates[i], arr);
-        arr.pop()
+//     for(let i = index; i<candidates.length; i++){
+//         arr.push(candidates[i]);
+//         dfs(i,currentVal-candidates[i], arr);
+//         arr.pop()
         
-    }
-    }
-        dfs(0,target,[]);
+//     }
+//     }
+//         dfs(0,target,[]);
         
-        return result
+//         return result
     
-}
+// }
 
+
+
+
+var combinationSum = function(candidates, target){
+    let index = 0
+    let tempData = []
+    let result = []
+    
+    function BackTracking(index, target, tempData){
+        if(target === 0){
+            result.push([...tempData])
+            return
+        }
+        if(target < 0) return;
+        
+        for(let i = index; i < candidates.length; i++){
+            tempData.push(candidates[i])
+            BackTracking(i, target-candidates[i],tempData)
+            tempData.pop()
+        }
+        
+    }
+    
+    BackTracking(index,target,tempData)
+    return result;
+}
 
 
