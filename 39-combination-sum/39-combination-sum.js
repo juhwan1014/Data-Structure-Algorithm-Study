@@ -71,17 +71,43 @@
 // // count : 4
 
 
-var combinationSum = function(candidates, target) {
-    const result = [];
+// var combinationSum = function(candidates, target) {
+//     const result = [];
     
-    function permute(arr=[], sum=0, idx=0) {
-        if(sum > target) return;
-        if(sum === target) result.push(arr);
+//     function permute(arr=[], sum=0, idx=0) {
+//         if(sum > target) return;
+//         if(sum === target) result.push(arr);
         
-        for(let i = idx; i < candidates.length; i++) {
-            permute([...arr, candidates[i]], sum+candidates[i], i);
-        }
+//         for(let i = idx; i < candidates.length; i++) {
+//             permute([...arr, candidates[i]], sum+candidates[i], i);
+//         }
+//     }
+//     permute()
+//     return result;
+// };
+
+var combinationSum = function(candidates, target){
+    let result = [];
+    
+    function dfs(index, currentVal,arr){
+    
+    if(currentVal < 0) return;
+    if(currentVal === 0){
+        result.push([...arr]);
+    } 
+    
+    for(let i = index; i<candidates.length; i++){
+        arr.push(candidates[i]);
+        dfs(i,currentVal-candidates[i], arr);
+        arr.pop()
+        
     }
-    permute()
-    return result;
-};
+    }
+        dfs(0,target,[]);
+        
+        return result
+    
+}
+
+
+
