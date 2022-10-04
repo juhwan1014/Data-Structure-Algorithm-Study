@@ -30,17 +30,31 @@
 // 	return result;
 // }
 
+// var subsets = function(nums) {
+//     function findSubset(arr,temp){
+//             res.push([...temp])
+//         for(let i=0;i<arr.length;i++){
+//             temp.push(arr[i])
+//             findSubset(arr.slice(i+1),temp)
+//             temp.pop()
+//         }
+//     }
+    
+//     let res = []
+//     findSubset(nums,[])
+//     return res
+// };
+
 var subsets = function(nums) {
-    function findSubset(arr,curr){
-            res.push([...curr])
-        for(let i=0;i<arr.length;i++){
-            curr.push(arr[i])
-            findSubset(arr.slice(i+1),curr)
-            curr.pop()
+    var res = [];
+    function dfs(nums, index, path, res){
+        res.push([...path]);
+        for(var i=index; i<nums.length; i+=1){
+            path.push(nums[i]);
+            dfs(nums, i+1, path, res);
+            path.pop();
         }
     }
-    
-    let res = []
-    findSubset(nums,[])
-    return res
+    dfs(nums, 0, [], res);
+    return res;
 };
